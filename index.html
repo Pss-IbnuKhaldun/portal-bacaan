@@ -1,45 +1,20 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Bahan Bacaan Digital Murid</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Portal Bacaan</title>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <div class="max-w-2xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
-    <h1 class="text-3xl font-bold mb-4">📚 Portal Bahan Bacaan Digital</h1>
-    <p class="text-3xl font-bold mb-4">Bulan November 2025</p>
-    <p class="text-lg text-indigo-700 mb-1">Perpustakaan Ibnu Khaldun</p>
-    <p class="text-lg text-indigo-700 mb-6">Sekolah Kebangsaan Kota Rentang (KBA2011)</p>
-    <!-- ... kod lain ... -->
-</div>
-    <select id="jenis-buku" class="mb-4 p-2 border">
-        <option value="">Semua Jenis Buku</option>
-        <option value="BAHASA MELAYU">Bahasa Melayu</option>
-        <option value="BAHASA INGGERIS">Bahasa Inggeris</option>
-    </select>
-    <div id="senarai-bahan" class="grid gap-4"></div>
-</div>
-<script>
-async function fetchAndRender() {
-    // Jika username repo anda ialah zakirnajib, repo ialah portal-bacaan, gunakan pautan berikut!
-    const url = "https://raw.githubusercontent.com/zakirnajib/portal-bacaan/main/bahan.json";
-    const res = await fetch(url);
-    const bahan = await res.json();
-    const senarai = document.getElementById('senarai-bahan');
-    const filterJenis = document.getElementById('jenis-buku').value;
-    senarai.innerHTML = '';
-    bahan.filter(item => !filterJenis || item.bookType === filterJenis).forEach(item => {
-        senarai.innerHTML += `<div class="border p-4 rounded bg-white">
-            <div class="font-bold">${item.title}</div>
-            <div class="text-sm text-gray-500">${item.bookType}</div>
-            <a class="mt-2 inline-block px-3 py-1 bg-indigo-500 text-white rounded" href="${item.url}" target="_blank">Akses Bahan</a>
-        </div>`;
-    });
-}
-document.getElementById('jenis-buku').onchange = fetchAndRender;
-fetchAndRender();
-</script>
+<body>
+    <h1>Welcome to Portal Bacaan</h1>
+    <script>
+        const url = "https://raw.githubusercontent.com/Pss-IbnuKhaldun/portal-bacaan/main/bahan.json";
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
 </body>
 </html>
