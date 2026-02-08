@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Portal Bacaan</title>
 </head>
-<body>
-    <h1>Welcome to Portal Bacaan</h1>
+<body class="bg-gray-100">
+    <header class="bg-blue-600 p-5">
+        <h1 class="text-white text-3xl">Portal Bacaan</h1>
+    </header>
+    <div class="p-5">
+        <label for="filter" class="block mb-2 text-sm font-medium text-gray-700">Filter:</label>
+        <select id="filter" class="block w-full p-2 border border-gray-300 rounded">
+            <option value="all">All</option>
+            <option value="category1">Category 1</option>
+            <option value="category2">Category 2</option>
+        </select>
+    </div>
     <script>
-        const url = "https://raw.githubusercontent.com/Pss-IbnuKhaldun/portal-bacaan/main/bahan.json";
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => console.error('Error fetching JSON:', error));
+        document.getElementById('filter').addEventListener('change', function() {
+            const filterValue = this.value;
+            fetch(`https://api.github.com/users/[YOUR_GITHUB_USERNAME]/repos?filter=${filterValue}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Process the fetched data
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
     </script>
 </body>
 </html>
